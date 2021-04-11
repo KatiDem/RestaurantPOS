@@ -4,7 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import validate_email, RegexValidator
 # from rest_framework.reverse import reverse as api_reverse
 
-# from utils.mixins import TimestampMixin
+from utils.mixins import TimestampMixin
 
 
 class UserManager(BaseUserManager):
@@ -44,7 +44,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin, TimestampMixin):
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
         message="Телефон должен быть в формате: '+375296788767'")
