@@ -33,10 +33,14 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
     path('users/api/v1/', include('users.urls')),
+    path('restaurant/api/v1/', include('restaurant.urls')),
+    path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls.jwt')),
     # path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-]
+
