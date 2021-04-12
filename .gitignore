@@ -8,7 +8,9 @@ __pycache__/
 *.iml
 *.xml
 .idea/
+
 .DS_Store
+
 # Distribution / packaging
 .Python
 env/

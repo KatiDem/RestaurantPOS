@@ -1,15 +1,22 @@
 from django.urls import path, include
-from .views import *
+
+from rest_framework import routers
+
+from users.views import AdminProfileViewSet, WaiterProfileViewSet, CookProfileViewSet
+
 
 app_name = 'users'
 
+
+router = routers.DefaultRouter()
+router.register('profile/admin', AdminProfileViewSet, 'admin-profile')
+router.register('profile/waiter', WaiterProfileViewSet, 'waiter-profile')
+router.register('profile/cook', CookProfileViewSet, 'cook-profile')
+
+
 urlpatterns = [
-    path('user/create/', CustomUserCreateView.as_view()),
-    path('user/list/', CustomUserListView.as_view()),
-    path('user/<str:pk>', CustomUserRetrievView.as_view()),
-    path('user/del/<str:pk>', CustomUserDestroyView.as_view()),
-    path('admin/create/', AdminCreateView.as_view()),
-    path('admin/list/', AdminListView.as_view()),
-    path('admin/<str:pk>', AdminRetrievView.as_view()),
-    path('admin/del/<str:pk>', AdminDestroyView.as_view())
+    # path('auth/', include('djoser.urls')),
+    # path('auth/', include('djoser.urls.authtoken')),
+    # path('auth/', include('djoser.urls.jwt')),
+    path('', include(router.urls)),
 ]
