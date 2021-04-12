@@ -4,34 +4,34 @@ from rest_framework.reverse import reverse as api_reverse
 from utils.mixins import TimestampMixin
 
 
-class AdminManager(models.Manager):
+class WaiterManager(models.Manager):
     def get_queryset(self):
-        return super(AdminManager, self).get_queryset().select_related('user')
+        return super(WaiterManager, self).get_queryset().select_related('user')
 
 
 def upload_avatar_image_dir(instance, filename):
     return f'avatars/admin/{filename.lower()}'
 
 
-class Admin(TimestampMixin):
-    objects = AdminManager()
+class Waiter(TimestampMixin):
+    objects = WaiterManager()
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                verbose_name='Администратор',
+                                verbose_name='Официант',
                                 on_delete=models.CASCADE,
                                 primary_key=True,
-                                related_name='admin')
+                                related_name='waiter')
     avatar = models.ImageField('Фотография', upload_to=upload_avatar_image_dir, null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Администратор'
-        verbose_name_plural = 'Администраторы'
+        verbose_name = 'Официант'
+        verbose_name_plural = 'Официанты'
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
 
     # @staticmethod
     # def get_number_of_admins():
-    #     return Admin.odjects.count()
+    #     return Waiter.odjects.count()
 
     def get_api_url(self, request=None):
-        return api_reverse('users:admin-profile-detail', kwargs={'pk': self.user.pk}, request=request)
+        return api_reverse('users:student-profile-detail', kwargs={'pk': self.user.pk}, request=request)
