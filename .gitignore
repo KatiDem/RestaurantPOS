@@ -7,6 +7,7 @@ __pycache__/
 *.so
 *.iml
 *.xml
+.idea/
 # Distribution / packaging
 .Python
 #build/
