@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from rest_framework.generics import *
 from rest_framework.filters import *
-from .models import Order
-from .serializers import OrderSerializer
+from ..models import Order
+from ..serializers import OrderSerializer
 
 
 class OrderCreateView(CreateAPIView):

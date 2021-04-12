@@ -1,1 +1,1 @@
-from .order import Order
+from .order_model import Order
