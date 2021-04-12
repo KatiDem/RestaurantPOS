@@ -57,7 +57,7 @@ SIMPLE_JWT = {
 # SIMPLE_JWT = {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=320)}
 
 DJOSER = {
-    'TOKEN_MODEL': None,  # needed for JWT
+    # 'TOKEN_MODEL': None,  # needed for JWT
     'PERMISSIONS': {
         'user_delete': ['users.permissions.IsSuperUser'],
     },

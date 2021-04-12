@@ -34,11 +34,13 @@ class IsWaiterUser(permissions.BasePermission):
 
 
 class IsAdminUser(permissions.BasePermission):
+    # for view permission
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
             return False
         return request.user.is_admin and request.user.is_active
 
+    # for object level permissions
     def has_object_permission(self, request, view, obj):
         if not request.user.is_authenticated:
             return False
