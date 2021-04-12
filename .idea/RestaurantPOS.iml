@@ -5,15 +5,4 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-  <component name="PyDocumentationSettings">
-    <option name="format" value="PLAIN" />
-    <option name="myDocStringFormat" value="Plain" />
-  </component>
-  <component name="TemplatesService">
-    <option name="TEMPLATE_FOLDERS">
-      <list>
-        <option value="$MODULE_DIR$/backend/venv/lib/python3.9/site-packages/django/forms/templates" />
-      </list>
-    </option>
-  </component>
 </module>
