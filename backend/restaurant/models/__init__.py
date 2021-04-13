@@ -1,0 +1,1 @@
+from .seating_models import Seating
