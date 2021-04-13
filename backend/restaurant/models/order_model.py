@@ -18,3 +18,4 @@ class Order(models.Model):
     delivered = models.BooleanField(default=False)  # order has been delivered
     delayed = models.BooleanField(default=False)  # order is delayed
     paid = models.BooleanField(default=False)  # order has been paid
+
