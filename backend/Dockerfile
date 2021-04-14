@@ -2,13 +2,15 @@ FROM python:3.8-alpine
 
 WORKDIR /usr/src/app
 
+ENV PYTHONDONTWRITEBYTECODE 1  
+
+ENV PYTHONUNBUFFERED 1
+
 RUN apk update \
-    && apk add postgresql-dev python3-dev libffi-dev openssl-dev musl-dev jpeg-dev zlib-dev libmagic gcc
+    && apk add postgresql-dev gcc python3-dev libffi-dev openssl-dev musl-dev jpeg-dev zlib-dev libmagic
 
 RUN pip install --upgrade pip
-
 COPY ./requirements-dev.txt /usr/src/app/requirements-dev.txt
-
 RUN pip install -r requirements-dev.txt
 
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh

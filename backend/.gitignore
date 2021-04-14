@@ -5,14 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
-*.iml
-*.xml
-.idea/
-.DS_Store
+
 # Distribution / packaging
 .Python
 env/
-#build/
+build/
 develop-eggs/
 dist/
 downloads/
@@ -86,7 +83,7 @@ celerybeat-schedule
 ../build/.env
 
 # virtualenv
-#.venv
+.venv
 venv/
 ENV/
 .vscode

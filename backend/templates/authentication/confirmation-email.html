@@ -1,0 +1,17 @@
+{% load i18n%}
+
+{% block text_body%}
+{% trans "Hello:"%} {{ user }}
+{% blocktrans%} You received this email asking you to create an Restaurant POS system password for your account. {% endblocktrans%}
+
+{% endblock text_body%}
+
+{% block html_body%}
+
+{% trans "Please click on the link below and enter a new password:"%}
+http://localhost:3000/auth/reset-password-confirm/{{ uid }}/{{ token }}
+
+{% trans "Thank you for using our website!" %}
+
+{% blocktrans%} The Restaurant POS team {% endblocktrans%}
+{% endblock html_body%}
