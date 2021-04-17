@@ -18,7 +18,7 @@ urlpatterns = [
     path('order/update/<str:number>/', OrderView.as_view()),
     path('table/create/', TableCreateView.as_view()),
     path('table/list/', TableListView.as_view()),
-    path('table/update/<str:number>/', TableView.as_view()),
-    path('table/delete/<str:number>/', TableDestroyView.as_view()),
+    path('table/update/<str:name>/', TableView.as_view()),
+    path('table/delete/<str:name>/', TableDestroyView.as_view()),
 
 ]
