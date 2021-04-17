@@ -1,14 +1,11 @@
 from django.urls import path, include
-from .views import *
+from .views import MenuDeleteView, MenuListView, MenuUpdateView, MenuCreateView
 
 app_name = 'restaurant'
 
 urlpatterns = [
-    path('table/', TableListView.as_view()),
-    path('table/free/', TableFreeListView.as_view()),
-    path('table/create/', TableCreateView.as_view()),
-    path('table/delete/<int:pk>/', TableDeleteView.as_view()),
-    path('order/create/', OrderCreateView.as_view()),
-    path('order/list/', OrderListView.as_view()),
-    path('order/del/<str:pk>', OrderDestroyView.as_view()),
+    path('menu/create/', MenuCreateView.as_view()),
+    path('menu/update/<int:pk>/', MenuUpdateView.as_view()),
+    path('menu/list/', MenuListView.as_view()),
+    path('menu/delete/<int:pk>', MenuDeleteView.as_view()),
 ]
