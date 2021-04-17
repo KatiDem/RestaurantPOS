@@ -1,16 +1,28 @@
 from django.shortcuts import render
-
 from .serializers import *
 from .models import *
-
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
-
-class OrderView(RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-    lookup_field = 'order_number'
+from rest_framework.generics import *
 
 
-class OrderCreateView(CreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderCreateSerializer
+# POST
+class OrderItemCreateView(CreateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+# PUT,PATCH
+class OrderItemUpdateView(UpdateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+# DELETE
+class OrderItemDestroyView(DestroyAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+# GET
+class OrderItemListView(ListAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
