@@ -1,4 +1,5 @@
 from django.db import models
+from .seating_models import Seating
 
 
 class Menu(models.Model):
