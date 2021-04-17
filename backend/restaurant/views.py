@@ -1,14 +1,34 @@
 from django.shortcuts import render
-
 from .serializers import *
 from .models import *
+from rest_framework.generics import *
 
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
+
+# POST
+class OrderItemCreateView(CreateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+# PUT,PATCH
+class OrderItemUpdateView(UpdateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+# DELETE
+class OrderItemDestroyView(DestroyAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
 
 
 class MenuCreateView(CreateAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuItemSerializer
+
+# GET
+class OrderItemListView(ListAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
 
 
 class MenuUpdateView(UpdateAPIView):
@@ -29,3 +49,4 @@ class MenuDeleteView(DestroyAPIView):
 class MenuRecordView(generics.ListAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuItemSerializer
+
