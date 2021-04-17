@@ -22,7 +22,7 @@ class OrderItemDestroyView(DestroyAPIView):
 
 
 class MenuCreateView(CreateAPIView):
-    queryset = Menu.objects.all()
+    queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
 # GET
@@ -32,21 +32,21 @@ class OrderItemListView(ListAPIView):
 
 
 class MenuUpdateView(UpdateAPIView):
-    queryset = Menu.objects.all()
+    queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
 
 class MenuListView(ListAPIView):
-    queryset = Menu.objects.all()
+    queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
 
 class MenuDeleteView(DestroyAPIView):
-    queryset = Menu.objects.all()
+    queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
 
-class MenuRecordView(generics.ListAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuItemSerializer
-
+# class MenuRecordView(generics.ListAPIView):
+#     queryset = MenuItem.objects.all()
+#     serializer_class = MenuItemSerializer
+#
