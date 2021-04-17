@@ -12,7 +12,7 @@ class Table(models.Model):
         ordering = ['is_available']
 
     def __str__(self):
-        return self.name_table
+        return self.name
 
 
 class MenuItem(models.Model):
