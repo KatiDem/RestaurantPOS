@@ -12,4 +12,9 @@ urlpatterns = [
     path('menu/update/<int:pk>/', MenuUpdateView.as_view()),
     path('menu/list/', MenuListView.as_view()),
     path('menu/delete/<int:pk>', MenuDeleteView.as_view()),
+    path('order/list/', OrderListView.as_view()),
+    path('order/create/', OrderCreateView.as_view()),
+    path('order/delete/<str:number>/', OrderDestroyView.as_view()),
+    path('order/update/<str:number>/', OrderView.as_view()),
+
 ]
