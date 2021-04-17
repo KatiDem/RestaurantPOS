@@ -5,12 +5,27 @@ from .models import *
 
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
 
-class OrderView(RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-    lookup_field = 'order_number'
+
+class MenuCreateView(CreateAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuItemSerializer
 
 
-class OrderCreateView(CreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderCreateSerializer
+class MenuUpdateView(UpdateAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuItemSerializer
+
+
+class MenuListView(ListAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuItemSerializer
+
+
+class MenuDeleteView(DestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuItemSerializer
+
+
+class MenuRecordView(generics.ListAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuItemSerializer
