@@ -3,7 +3,7 @@ from .models import Table, MenuItem, OrderItem, Order
 
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
-    list_display = ('name_table', 'is_available')
+    list_display = ('name', 'is_available')
     list_editable = ('is_available',)
 
 @admin.register(MenuItem)

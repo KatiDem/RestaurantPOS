@@ -68,3 +68,21 @@ class OrderDestroyView(DestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'number'
+
+class TableCreateView(CreateAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
+
+class TableListView(ListAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
+
+class TableView(UpdateAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
+    lookup_field = 'name'
+
+class TableDestroyView(DestroyAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
+    lookup_field = 'name'

@@ -3,7 +3,7 @@ import datetime
 
 
 class Table(models.Model):
-    name_table = models.CharField('Table name', max_length=30, unique=True)
+    name = models.CharField('Table name', max_length=30, unique=True)
     is_available = models.BooleanField('Status', default=False, help_text='If the table is free-True, busy-False')
 
     class Meta:
