@@ -50,3 +50,21 @@ class MenuDeleteView(DestroyAPIView):
 #     queryset = MenuItem.objects.all()
 #     serializer_class = MenuItemSerializer
 #
+
+class OrderView(UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    lookup_field  = 'number'
+
+class OrderListView(ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class OrderCreateView(CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class OrderDestroyView(DestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    lookup_field = 'number'
