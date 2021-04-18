@@ -1,7 +1,13 @@
 from django.shortcuts import render
+
+
 from .serializers import *
 from .models import *
 from rest_framework.generics import *
+
+from django.db.models import Sum
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 # POST
@@ -87,3 +93,31 @@ class TableDestroyView(DestroyAPIView):
     serializer_class = TableSerializer
     lookup_field = 'name'
 
+@api_view()
+def FullCostOrdersListView(request):
+    full_cost = Order.objects.filter(paid=True).aggregate(full_cost=Sum('cost'))
+    return Response(full_cost)
+
+@api_view()
+def CostTablesListView(request, pk):
+    full_cost = Order.objects.filter(table=pk).aggregate(Sum('cost'))
+    return Response(full_cost)
+
+
+@api_view()
+def CostTablesYearListView(request, year):
+    full_cost = Order.objects.filter(date_of_creation__year=year).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)
+
+@api_view()
+def CostTablesMonthListView(request, month):
+    full_cost = Order.objects.filter(date_of_creation__month=month).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)
+
+@api_view()
+def CostTablesDayListView(request, day):
+    full_cost = Order.objects.filter(date_of_creation__day=day).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)

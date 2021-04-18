@@ -20,5 +20,10 @@ urlpatterns = [
     path('table/list/', TableListView.as_view()),
     path('table/update/<str:name>/', TableView.as_view()),
     path('table/delete/<str:name>/', TableDestroyView.as_view()),
+    path('report/fullcost/', FullCostOrdersListView),
+    path('report/cost/table/<int:pk>/', CostTablesListView),
+    path('report/cost/year/<int:year>/', CostTablesYearListView),
+    path('report/cost/month/<int:month>/', CostTablesMonthListView),
+    path('report/cost/day/<int:day>/', CostTablesDayListView),
 
 ]
