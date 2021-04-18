@@ -86,3 +86,4 @@ class TableDestroyView(DestroyAPIView):
     queryset = Table.objects.all()
     serializer_class = TableSerializer
     lookup_field = 'name'
+
