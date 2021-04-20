@@ -8,14 +8,14 @@ from rest_framework.generics import *
 class OrderItemCreateView(CreateAPIView):
     """ Create order item """
     queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
+    serializer_class = OrderItemCreateSerializer
 
 
 # PUT,PATCH
 class OrderItemUpdateView(UpdateAPIView):
     """ Update order item by """
     queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
+    serializer_class = OrderItemCreateSerializer
 
 # DELETE
 class OrderItemDestroyView(DestroyAPIView):
@@ -62,8 +62,8 @@ class MenuDeleteView(DestroyAPIView):
 class OrderView(UpdateAPIView):
     """ Update Order by number """
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-    lookup_field  = 'number'
+    serializer_class = OrderCreateSerializer
+    lookup_field = 'number'
 
 class OrderListView(ListAPIView):
     """ List Order """
@@ -73,7 +73,7 @@ class OrderListView(ListAPIView):
 class OrderCreateView(CreateAPIView):
     """ Create Order """
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    serializer_class = OrderCreateSerializer
 
 class OrderDestroyView(DestroyAPIView):
     """ Delete Order by number """
