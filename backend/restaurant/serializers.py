@@ -8,7 +8,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
+class OrderItemCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = '__all__'
@@ -32,13 +32,13 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('table', 'number_of_guests', 'items', 'comment')
+        fields = '__all__'
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderListSerializer(serializers.ModelSerializer):
     table = TableSerializer(read_only=True)
-    items = OrderItemSerializer(many=True)
+    items = OrderItemCreateSerializer(many=True)
 
     class Meta:
         model = Order
-        fields = ('table', 'number_of_guests', 'items', 'comment')
+        fields = '__all__'
