@@ -8,7 +8,7 @@ from rest_framework.generics import *
 class OrderItemCreateView(CreateAPIView):
     """ Create order item """
     queryset = OrderItem.objects.all()
-    serializer_class = OrderItemCreateSerializer
+    serializer_class = OrderItemSerializer
 
 
 # PUT,PATCH
