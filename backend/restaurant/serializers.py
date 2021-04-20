@@ -8,7 +8,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OrderItemCreateSerializer(serializers.ModelSerializer):
+class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = '__all__'
