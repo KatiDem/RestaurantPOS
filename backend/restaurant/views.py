@@ -2,9 +2,16 @@ from django.shortcuts import render
 from .serializers import *
 from .models import *
 from rest_framework.generics import *
+from rest_framework.mixins import *
 
 
 # POST
+from user.roles import WaiterRequiredMixin, SuperuserRequiredMixin
+
+from rest_framework.decorators import api_view
+
+
+
 class OrderItemCreateView(CreateAPIView):
     """ Create order item """
     queryset = OrderItem.objects.all()
@@ -83,17 +90,17 @@ class OrderDestroyView(DestroyAPIView):
     serializer_class = OrderListSerializer
     lookup_field = 'number'
 
-class TableCreateView(CreateAPIView):
+class TableCreateView(SuperuserRequiredMixin, CreateAPIView):
     """ Create Table """
     queryset = Table.objects.all()
     serializer_class = TableSerializer
 
-class TableListView(ListAPIView):
+class TableListView(ListAPIView, WaiterRequiredMixin):
     """ List Tables """
     queryset = Table.objects.all()
     serializer_class = TableSerializer
 
-class TableView(UpdateAPIView):
+class TableView(UpdateAPIView, WaiterRequiredMixin):
     """ Update Table by name """
     queryset = Table.objects.all()
     serializer_class = TableSerializer
@@ -104,3 +111,35 @@ class TableDestroyView(DestroyAPIView):
     queryset = Table.objects.all()
     serializer_class = TableSerializer
     lookup_field = 'name'
+
+
+
+
+@api_view()
+def FullCostOrdersListView(request):
+    full_cost = Order.objects.filter(paid=True).aggregate(full_cost=Sum('cost'))
+    return Response(full_cost)
+
+@api_view()
+def CostTablesListView(request, pk):
+    full_cost = Order.objects.filter(table=pk).aggregate(Sum('cost'))
+    return Response(full_cost)
+
+
+@api_view()
+def CostYearListView(request, year):
+    full_cost = Order.objects.filter(date_of_creation__year=year).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)
+
+@api_view()
+def CostMonthListView(request, month):
+    full_cost = Order.objects.filter(date_of_creation__month=month).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)
+
+@api_view()
+def CostDayListView(request, day):
+    full_cost = Order.objects.filter(date_of_creation__day=day).exclude(paid=False).aggregate(full_cost=Sum('cost'))
+
+    return Response(full_cost)
