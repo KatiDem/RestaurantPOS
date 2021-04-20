@@ -22,9 +22,9 @@ class TableSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    table = TableSerializer(read_only=True)
-    items = OrderItemSerializer(many=True, read_only=True)
+    # table = TableSerializer(read_only=False)
+    # items = OrderItemSerializer(many=True, read_only=False)
 
     class Meta:
         model = Order
-        fields = '__all__'
+        exclude = ['number']
