@@ -15,7 +15,7 @@ class OrderItemCreateSerializer(serializers.ModelSerializer):
         
         
 class OrderItemListSerializer(serializers.ModelSerializer):
-    menu_item = MenuItemSerializer(many=True, read_only=True)
+    menu_item = MenuItemSerializer(read_only=True)
     
     class Meta:
         model = OrderItem
