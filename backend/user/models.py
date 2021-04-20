@@ -5,6 +5,8 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
+from django.core.validators import RegexValidator
+
 
 class User(AbstractUser):
     class Meta:
@@ -16,10 +18,18 @@ class User(AbstractUser):
         ('Cook', 'Cook'),
     )
 
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message="Телефон должен быть в формате: '+375296788767'")
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField("Email", unique=True)
     role = models.CharField(max_length=50, choices=ROLES)
+    phone_number = models.CharField(
+        'Телефонный номер',
+        validators=[phone_regex],
+        max_length=17)
     is_superuser = models.BooleanField(default=False)
     is_waiter = models.BooleanField(default=False)
     is_cook = models.BooleanField(default=False)

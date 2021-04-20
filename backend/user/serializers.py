@@ -27,7 +27,7 @@ jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'first_name', 'last_name', 'phone_number')
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
