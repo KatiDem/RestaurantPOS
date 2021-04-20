@@ -2,17 +2,22 @@ from .models import *
 from rest_framework import serializers
 
 
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    # menuitem = MenuItemSerializer(many=True)
-    class Meta:
-        model = OrderItem
-        fields = '__all__'
-
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    menu_item = MenuItemSerializer(many=True)
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+#class MenuItemSerializer(serializers.ModelSerializer):
+ #   class Meta:
+  #      model = MenuItem
+   #     fields = '__all__'
 
 
 class TableSerializer(serializers.ModelSerializer):
@@ -22,9 +27,9 @@ class TableSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    table = TableSerializer(read_only=True)
-    items = OrderItemSerializer(many=True, read_only=True)
+    table = TableSerializer()
+    items = OrderItemSerializer(many=True)
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields =  ('table', 'number_of_guests', 'items', 'comment')
