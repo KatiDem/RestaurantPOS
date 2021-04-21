@@ -16,5 +16,5 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('number', 'table', 'date_of_creation', 'time_dish_is_ready')
+    list_display = ('id', 'table', 'date_of_creation')
 

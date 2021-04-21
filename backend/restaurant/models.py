@@ -79,7 +79,7 @@ class MenuItem(models.Model):
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name='MenuItem', verbose_name='Пункт меню')
     quantity = models.PositiveSmallIntegerField('Колличество')
-    total_price = models.DecimalField('Общая стоимость', max_digits=5, decimal_places=2, null=True, blank=True)
+    total_price = models.DecimalField('Общая стоимость', max_digits=5, decimal_places=2, null=True, blank=True, default='0')
 
     def save(self, *args, **kwargs):
         self.total_price = self.get_price()
@@ -93,35 +93,35 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
-    number = models.CharField('Номер заказа', max_length=100,  null=True, blank=True, unique=True)
+    # number = models.CharField('Номер заказа', max_length=100,  null=True, blank=True, unique=True)
     # waiter = models.ForeignKey('Waiter', on_delete=models.CASCADE, verbose_name='Waiter')
     table = models.ForeignKey(Table, on_delete=models.CASCADE, verbose_name='Стол')
     number_of_guests = models.PositiveSmallIntegerField('Количество гостей', default=1)
     items = models.ManyToManyField(OrderItem)
-    cost = models.DecimalField('Сумма за весь заказ', max_digits=5, decimal_places=2, null=True, blank=True)
+    cost = models.DecimalField('Сумма за весь заказ', max_digits=5, decimal_places=2, null=True, blank=True, default='0')
     date_of_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания заказа', null=True, blank=True)
     dish_is_ready = models.BooleanField('Отметка о готовности заказа на кухне', default=False)
-    time_dish_is_ready = models.CharField('Время приготовления заказа', max_length=10, null=True, blank=True)
+    # time_dish_is_ready = models.CharField('Время приготовления заказа', max_length=10, null=True, blank=True)
     comment = models.CharField('Комментарий', max_length=250, null=True, blank=True)
     cancelled = models.BooleanField('Заказ отменен', default=False)
     paid = models.BooleanField('Заказ оплачен', default=False)
 
-    def save(self, *args, **kwargs):
-        order = Order()
-        self.cost = 0
-        if self.dish_is_ready:
-            self.time_dish_is_ready = datetime.datetime.today().strftime("%H:%M:%S")
-        if not self.id:
-            super(Order, self).save(*args, **kwargs)
-        self.number = f'{str(self.id)}-{datetime.datetime.today().strftime("%d.%m.%Y")}'
-        self.cost = self.get_total()
-        return super(Order, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     order = Order()
+    #     self.cost = 0
+    #     if self.dish_is_ready:
+    #         self.time_dish_is_ready = datetime.datetime.today().strftime("%H:%M:%S")
+    #     if not self.id:
+    #         super(Order, self).save(*args, **kwargs)
+    #     self.number = f'{str(self.id)}-{datetime.datetime.today().strftime("%d.%m.%Y")}'
+    #     self.cost = self.get_total()
+    #     return super(Order, self).save(*args, **kwargs)
 
-    def get_total(self):
-        return sum([order_item.get_price() for order_item in self.items.all()])
+    # def get_total(self):
+    #     return sum([order_item.get_price() for order_item in self.items.all()])
 
     def __str__(self):
-        return str(self.number)
+        return str(self.id)
 
 
 
