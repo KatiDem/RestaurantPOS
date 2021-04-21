@@ -78,6 +78,17 @@ class OrderListView(ListAPIView):
     """ List Order """
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
+    
+class OrderListActiveView(ListAPIView):
+    """ List Active Order """
+    queryset = Order.objects.filter(dish_is_ready=False)
+    serializer_class = OrderListSerializer
+
+
+class OrderListNotActiveView(ListAPIView):
+    """ List Not Active Order """
+    queryset = Order.objects.filter(dish_is_ready=True)
+    serializer_class = OrderListSerializer
 
 class OrderCreateView(CreateAPIView):
     """ Create Order """
